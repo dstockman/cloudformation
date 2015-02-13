@@ -1,7 +1,7 @@
 {
-	"AWSTemplateFormatVersion": "2010-09-09",
-	"Description": "Creates VPC and NAT instance in a region with public and private subnets for all supported availability zones.  Supports regions us-east-1, us-west-1, us-west-2.",
-	"Parameters": {
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "Creates VPC and NAT instance in a region with public and private subnets for all supported availability zones.  Supports regions us-east-1, us-west-1, us-west-2.",
+  "Parameters": {
     "AvailabilityZoneA": {
       "Type": "String",
       "Description": "Account mapping for first region.  Defaults to a.",
@@ -20,24 +20,24 @@
       "Default": "c",
       "MaxLength": "1"
     },
-		"VpcCidrBlock": {
-			"Type": "String",
-			"Description": "CIDR block for VPC.  Default is 10.0.0.0/16",
-			"MinLength": "9",
+    "VpcCidrBlock": {
+      "Type": "String",
+      "Description": "CIDR block for VPC.  Default is 10.0.0.0/16",
+      "MinLength": "9",
       "MaxLength": "18",
-			"Default": "10.0.0.0/16",
-			"AllowedPattern" : "(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})/(\\d{1,2})",
-			"ConstraintDescription" : "must be a valid CIDR range of the form x.x.x.x/x."
-		},
-		"AvailabilityZonePublic1": {
-			"Type": "String",
-			"Description": "Public subnet block for availability zone a.  Default is 10.0.0.0/22",
-			"MinLength": "9",
+      "Default": "10.0.0.0/16",
+      "AllowedPattern" : "(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})/(\\d{1,2})",
+      "ConstraintDescription" : "must be a valid CIDR range of the form x.x.x.x/x."
+    },
+    "AvailabilityZonePublic1": {
+      "Type": "String",
+      "Description": "Public subnet block for availability zone a.  Default is 10.0.0.0/22",
+      "MinLength": "9",
       "MaxLength": "18",
-			"Default": "10.0.0.0/22",
+      "Default": "10.0.0.0/22",
       "AllowedPattern": "(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})/(\\d{1,2})",
-			"ConstraintDescription" : "must be a valid CIDR range of the form x.x.x.x/x."
-		},
+      "ConstraintDescription" : "must be a valid CIDR range of the form x.x.x.x/x."
+    },
     "AvailabilityZonePrivate1": {
       "Type": "String",
       "Description": "Private subnet block for availability zone a.  Default is 10.0.12.0/22",
@@ -47,13 +47,13 @@
       "AllowedPattern" : "(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})/(\\d{1,2})",
       "ConstraintDescription" : "must be a valid CIDR range of the form x.x.x.x/x."
     },
-		"AvailabilityZonePublic2": {
-			"Type": "String",
-			"Description": "Public subnet block for availability zone b.  Default is 10.0.4.0/22",
-			"Default": "10.0.4.0/22",
-			"AllowedPattern" : "(|\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}/\\d{1,2})",
-			"ConstraintDescription" : "must be a valid CIDR range of the form x.x.x.x/x."
-		},
+    "AvailabilityZonePublic2": {
+      "Type": "String",
+      "Description": "Public subnet block for availability zone b.  Default is 10.0.4.0/22",
+      "Default": "10.0.4.0/22",
+      "AllowedPattern" : "(|\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}/\\d{1,2})",
+      "ConstraintDescription" : "must be a valid CIDR range of the form x.x.x.x/x."
+    },
     "AvailabilityZonePrivate2": {
       "Type": "String",
       "Description": "Private subnet block for availability zone b.  Default is 10.10.16.0/22",
@@ -61,36 +61,36 @@
       "AllowedPattern" : "(|\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}/\\d{1,2})",
       "ConstraintDescription" : "must be a valid CIDR range of the form x.x.x.x/x."
     },
-		"AvailabilityZonePublic3": {
-			"Type": "String",
-			"Description": "Public subnet block for availability zone c.  Default is 10.0.8.0/22",
-			"Default": "10.0.8.0/22",
-			"AllowedPattern" : "(|\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}/\\d{1,2})",
-			"ConstraintDescription" : "must be a valid CIDR range of the form x.x.x.x/x."
-		},
-		"AvailabilityZonePrivate3": {
-			"Type": "String",
-			"Description": "Private subnet block for availability zone c.  Default is 10.0.20.0/22",
-			"Default": "10.0.20.0/22",
-			"AllowedPattern" : "(|\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}/\\d{1,2})",
-			"ConstraintDescription" : "must be a valid CIDR range of the form x.x.x.x/x."
-		},
+    "AvailabilityZonePublic3": {
+      "Type": "String",
+      "Description": "Public subnet block for availability zone c.  Default is 10.0.8.0/22",
+      "Default": "10.0.8.0/22",
+      "AllowedPattern" : "(|\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}/\\d{1,2})",
+      "ConstraintDescription" : "must be a valid CIDR range of the form x.x.x.x/x."
+    },
+    "AvailabilityZonePrivate3": {
+      "Type": "String",
+      "Description": "Private subnet block for availability zone c.  Default is 10.0.20.0/22",
+      "Default": "10.0.20.0/22",
+      "AllowedPattern" : "(|\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}/\\d{1,2})",
+      "ConstraintDescription" : "must be a valid CIDR range of the form x.x.x.x/x."
+    },
     "EnvType": { 
       "Description": "Environment type, should be dev, qa, test, stg, or prod.",
       "Type": "String",
       "Default": "dev"
     },
-		"DomainName": {
-			"Type": "String",
-			"Description": "Domain for VPC.  Default is convectionlabs.net.",
-			"Default": "convectionlabs.net"
-		},
+    "DomainName": {
+      "Type": "String",
+      "Description": "Domain for VPC.  Default is convectionlabs.net.",
+      "Default": "convectionlabs.net"
+    },
     "Subdomain": {
       "Type": "String",
       "Description": "Subdomain for VPC.  Default is useast1.",
       "Default": "useast1"
     },
-		"NATInstanceType": {
+    "NATInstanceType": {
       "Description": "NAT instance EC2 instance type",
       "Type": "String",
       "Default": "t1.micro",
@@ -101,146 +101,146 @@
       "Description": "Name of and existing EC2 KeyPair to enable SSH access to the instance",
       "Type": "String"
     }
-	},
-	"Mappings": {
+  },
+  "Mappings": {
     "NATAMIId": {
       "us-east-1": { "AMI": "ami-ad227cc4" },
       "us-west-1": { "AMI": "ami-d69aad93" },
       "us-west-2": { "AMI": "ami-f032acc0" }
     }
-	},
-	"Conditions": {
-		"AvailabilityZoneA": { "Fn::Or": [
-			{"Fn::Not": [{"Fn::Equals": ["", {"Ref": "AvailabilityZonePublic1"}]}]},
-			{"Fn::Not": [{"Fn::Equals": ["", {"Ref": "AvailabilityZonePublic1"}]}]},
-			{"Fn::Not": [{"Fn::Equals": ["", {"Ref": "AvailabilityZonePublic1"}]}]}
-		]},
-		"AvailabilityZoneB": { "Fn::Or": [
-			{"Fn::Not": [{"Fn::Equals": ["", {"Ref": "AvailabilityZonePublic2"}]}]},
-			{"Fn::Not": [{"Fn::Equals": ["", {"Ref": "AvailabilityZonePublic2"}]}]},
-			{"Fn::Not": [{"Fn::Equals": ["", {"Ref": "AvailabilityZonePublic2"}]}]}
-		]},
-		"AvailabilityZoneC": { "Fn::Or": [
-			{"Fn::Not": [{"Fn::Equals": ["", {"Ref": "AvailabilityZonePublic3"}]}]},
-			{"Fn::Not": [{"Fn::Equals": ["", {"Ref": "AvailabilityZonePublic3"}]}]},
-			{"Fn::Not": [{"Fn::Equals": ["", {"Ref": "AvailabilityZonePublic3"}]}]}
-		]}
-	},
-	"Resources": {
-		"VPC": {
-			"Type": "AWS::EC2::VPC",
-			"Properties": {
-				"CidrBlock": { "Ref": "VpcCidrBlock" },
-				"Tags": [
-					{ "Key": "Env", "Value": { "Ref": "EnvType"} },
-					{ "Key": "Name", "Value": { "Fn::Join": [ "-", [ { "Ref": "EnvType" }, "vpc" ] ] } }
-				]
-			}
-		},
-		"DHCPOptions": {
-	 		"Type": "AWS::EC2::DHCPOptions",
-   		"Properties": {
-   			"DomainName": { "Fn::Join": [ ".", [ { "Ref": "Subdomain" }, { "Ref": "DomainName" } ] ] },
-      	"DomainNameServers": [ "AmazonProvidedDNS" ],
-      	"Tags": [
-					{ "Key": "Env", "Value": { "Ref": "EnvType"} },
-					{ "Key": "Name", "Value": { "Fn::Join": [ "-", [ { "Ref": "EnvType" }, "DHCPOptions" ] ] } }
-				]
-		}
+  },
+  "Conditions": {
+    "AvailabilityZoneA": { "Fn::Or": [
+      {"Fn::Not": [{"Fn::Equals": ["", {"Ref": "AvailabilityZonePublic1"}]}]},
+      {"Fn::Not": [{"Fn::Equals": ["", {"Ref": "AvailabilityZonePublic1"}]}]},
+      {"Fn::Not": [{"Fn::Equals": ["", {"Ref": "AvailabilityZonePublic1"}]}]}
+    ]},
+    "AvailabilityZoneB": { "Fn::Or": [
+      {"Fn::Not": [{"Fn::Equals": ["", {"Ref": "AvailabilityZonePublic2"}]}]},
+      {"Fn::Not": [{"Fn::Equals": ["", {"Ref": "AvailabilityZonePublic2"}]}]},
+      {"Fn::Not": [{"Fn::Equals": ["", {"Ref": "AvailabilityZonePublic2"}]}]}
+    ]},
+    "AvailabilityZoneC": { "Fn::Or": [
+      {"Fn::Not": [{"Fn::Equals": ["", {"Ref": "AvailabilityZonePublic3"}]}]},
+      {"Fn::Not": [{"Fn::Equals": ["", {"Ref": "AvailabilityZonePublic3"}]}]},
+      {"Fn::Not": [{"Fn::Equals": ["", {"Ref": "AvailabilityZonePublic3"}]}]}
+    ]}
+  },
+  "Resources": {
+    "VPC": {
+      "Type": "AWS::EC2::VPC",
+      "Properties": {
+        "CidrBlock": { "Ref": "VpcCidrBlock" },
+        "Tags": [
+          { "Key": "Env", "Value": { "Ref": "EnvType"} },
+          { "Key": "Name", "Value": { "Fn::Join": [ "-", [ { "Ref": "EnvType" }, "vpc" ] ] } }
+        ]
+      }
+    },
+    "DHCPOptions": {
+      "Type": "AWS::EC2::DHCPOptions",
+      "Properties": {
+        "DomainName": { "Fn::Join": [ ".", [ { "Ref": "Subdomain" }, { "Ref": "DomainName" } ] ] },
+        "DomainNameServers": [ "AmazonProvidedDNS" ],
+        "Tags": [
+          { "Key": "Env", "Value": { "Ref": "EnvType"} },
+          { "Key": "Name", "Value": { "Fn::Join": [ "-", [ { "Ref": "EnvType" }, "DHCPOptions" ] ] } }
+        ]
+    }
    },
    "DHCPOptionAssociate": {
-	   "Type": "AWS::EC2::VPCDHCPOptionsAssociation",
-	   "Properties": {
-	     "VpcId": {"Ref" : "VPC"},
-	     "DhcpOptionsId" : {"Ref" : "DHCPOptions"}
-	    }
+     "Type": "AWS::EC2::VPCDHCPOptionsAssociation",
+     "Properties": {
+       "VpcId": {"Ref" : "VPC"},
+       "DhcpOptionsId" : {"Ref" : "DHCPOptions"}
+      }
     },
-		"PublicSubnetAz1": {
-			"Type": "AWS::EC2::Subnet",
-			"Condition": "AvailabilityZoneA",
+    "PublicSubnetAz1": {
+      "Type": "AWS::EC2::Subnet",
+      "Condition": "AvailabilityZoneA",
       "Properties": {
         "AvailabilityZone": { "Fn::Join" : [ "", [{"Ref": "AWS::Region"}, {"Ref": "AvailabilityZoneA"} ] ] },
         "VpcId": { "Ref" : "VPC" },
         "CidrBlock": { "Ref":  "AvailabilityZonePublic1" },
-    		"Tags": [
-					{ "Key": "Env", "Value": { "Ref": "EnvType"} },
+        "Tags": [
+          { "Key": "Env", "Value": { "Ref": "EnvType"} },
           { "Key": "Network-Loc", "Value": "public" },
-					{ "Key": "Name", "Value": { "Fn::Join": [ "-", [ { "Ref": "EnvType" }, "pubaz1" ] ] } }
-				]  
-			}
-		},
-		"PublicSubnetAz2": {
-			"Type": "AWS::EC2::Subnet",
-			"Condition": "AvailabilityZoneB",
+          { "Key": "Name", "Value": { "Fn::Join": [ "-", [ { "Ref": "EnvType" }, "pubaz1" ] ] } }
+        ]  
+      }
+    },
+    "PublicSubnetAz2": {
+      "Type": "AWS::EC2::Subnet",
+      "Condition": "AvailabilityZoneB",
       "Properties": {
         "AvailabilityZone": { "Fn::Join" : [ "", [{"Ref": "AWS::Region"}, {"Ref": "AvailabilityZoneB"} ] ] },
         "VpcId": { "Ref" : "VPC" },
         "CidrBlock": { "Ref":  "AvailabilityZonePublic2" },
-    		"Tags": [
-					{ "Key": "Env", "Value": { "Ref": "EnvType"} },
+        "Tags": [
+          { "Key": "Env", "Value": { "Ref": "EnvType"} },
           { "Key": "Network-Loc", "Value": "public" },
-					{ "Key": "Name", "Value": { "Fn::Join": [ "-", [ { "Ref": "EnvType" }, "pubaz2" ] ] } }
-				]  
-			}
-		},
-		"PublicSubnetAz3": {
-			"Type": "AWS::EC2::Subnet",
-			"Condition": "AvailabilityZoneC",
+          { "Key": "Name", "Value": { "Fn::Join": [ "-", [ { "Ref": "EnvType" }, "pubaz2" ] ] } }
+        ]  
+      }
+    },
+    "PublicSubnetAz3": {
+      "Type": "AWS::EC2::Subnet",
+      "Condition": "AvailabilityZoneC",
       "Properties": {
         "AvailabilityZone": { "Fn::Join" : [ "", [{"Ref": "AWS::Region"}, {"Ref": "AvailabilityZoneC"} ] ] },
         "VpcId": { "Ref" : "VPC" },
         "CidrBlock": { "Ref":  "AvailabilityZonePublic3" },
-    		"Tags": [
-					{ "Key": "Env", "Value": { "Ref": "EnvType"} },
+        "Tags": [
+          { "Key": "Env", "Value": { "Ref": "EnvType"} },
           { "Key": "Network-Loc", "Value": "public" },
-					{ "Key": "Name", "Value": { "Fn::Join": [ "-", [ { "Ref": "EnvType" }, "pubaz3" ] ] } }
-				]  
-			}
-		},
-		"PrivateSubnetAz1": {
-			"Type": "AWS::EC2::Subnet",
-			"Condition": "AvailabilityZoneA",
+          { "Key": "Name", "Value": { "Fn::Join": [ "-", [ { "Ref": "EnvType" }, "pubaz3" ] ] } }
+        ]  
+      }
+    },
+    "PrivateSubnetAz1": {
+      "Type": "AWS::EC2::Subnet",
+      "Condition": "AvailabilityZoneA",
       "Properties": {
         "AvailabilityZone": { "Fn::Join" : [ "", [{"Ref": "AWS::Region"}, {"Ref": "AvailabilityZoneA"} ] ] },
         "VpcId": { "Ref" : "VPC" },
         "CidrBlock": { "Ref":  "AvailabilityZonePrivate1" },
-    		"Tags": [
-					{ "Key": "Env", "Value": { "Ref": "EnvType"} },
+        "Tags": [
+          { "Key": "Env", "Value": { "Ref": "EnvType"} },
           { "Key": "Network-Loc", "Value": "private" },
-					{ "Key": "Name", "Value": { "Fn::Join": [ "-", [ { "Ref": "EnvType" }, "privaz1" ] ] } }
-				]  
-			}
-		},
-		"PrivateSubnetAz2": {
-			"Type": "AWS::EC2::Subnet",
-			"Condition": "AvailabilityZoneB",
+          { "Key": "Name", "Value": { "Fn::Join": [ "-", [ { "Ref": "EnvType" }, "privaz1" ] ] } }
+        ]  
+      }
+    },
+    "PrivateSubnetAz2": {
+      "Type": "AWS::EC2::Subnet",
+      "Condition": "AvailabilityZoneB",
       "Properties": {
         "AvailabilityZone": { "Fn::Join" : [ "", [{"Ref": "AWS::Region"}, {"Ref": "AvailabilityZoneB"} ] ] },
         "VpcId": { "Ref" : "VPC" },
         "CidrBlock": { "Ref":  "AvailabilityZonePrivate2" },
-    		"Tags": [
-					{ "Key": "Env", "Value": { "Ref": "EnvType"} },
+        "Tags": [
+          { "Key": "Env", "Value": { "Ref": "EnvType"} },
           { "Key": "Network-Loc", "Value": "private" },
-					{ "Key": "Name", "Value": { "Fn::Join": [ "-", [ { "Ref": "EnvType" }, "privaz2" ] ] } }
-				]  
-			}
-		},
-		"PrivateSubnetAz3": {
-			"Type": "AWS::EC2::Subnet",
-			"Condition": "AvailabilityZoneC",
+          { "Key": "Name", "Value": { "Fn::Join": [ "-", [ { "Ref": "EnvType" }, "privaz2" ] ] } }
+        ]  
+      }
+    },
+    "PrivateSubnetAz3": {
+      "Type": "AWS::EC2::Subnet",
+      "Condition": "AvailabilityZoneC",
       "Properties": {
         "AvailabilityZone": { "Fn::Join" : [ "", [{"Ref": "AWS::Region"}, {"Ref": "AvailabilityZoneC"} ] ] },
         "VpcId": { "Ref" : "VPC" },
         "CidrBlock": { "Ref":  "AvailabilityZonePrivate3" },
-    		"Tags": [
-					{ "Key": "Env", "Value": { "Ref": "EnvType"} },
+        "Tags": [
+          { "Key": "Env", "Value": { "Ref": "EnvType"} },
           { "Key": "Network-Loc", "Value": "private" },
-					{ "Key": "Name", "Value": { "Fn::Join": [ "-", [ { "Ref": "EnvType" }, "privaz3" ] ] } }
-				]  
-			}
-		},
+          { "Key": "Name", "Value": { "Fn::Join": [ "-", [ { "Ref": "EnvType" }, "privaz3" ] ] } }
+        ]  
+      }
+    },
 
-		"InternetGateway" : {
+    "InternetGateway" : {
       "Type": "AWS::EC2::InternetGateway",
       "Properties": {
         "Tags": [
@@ -249,14 +249,14 @@
         ]
       }
     },
-		"InternetGatewayAttach": {
+    "InternetGatewayAttach": {
        "Type": "AWS::EC2::VPCGatewayAttachment",
        "Properties": {
          "VpcId": { "Ref" : "VPC" },
          "InternetGatewayId": { "Ref": "InternetGateway" }
        }
     },
-		"PublicRouteTable": {
+    "PublicRouteTable": {
       "Type" : "AWS::EC2::RouteTable",
       "Properties": {
         "VpcId": {"Ref" : "VPC"},
@@ -266,7 +266,7 @@
         ]
       }
     },
-		"PublicRoutes": {
+    "PublicRoutes": {
       "Type": "AWS::EC2::Route",
       "Properties": {
         "RouteTableId": { "Ref": "PublicRouteTable" },
@@ -274,7 +274,7 @@
         "GatewayId": { "Ref": "InternetGateway" }
       }
     },
-		"PublicRouteTableAssociate1": {
+    "PublicRouteTableAssociate1": {
       "Type": "AWS::EC2::SubnetRouteTableAssociation",
       "Condition": "AvailabilityZoneA",
       "Properties": {
@@ -290,7 +290,7 @@
         "RouteTableId": { "Ref" : "PublicRouteTable" }
       }
     },
- 		"PublicRouteTableAssociate3": {
+    "PublicRouteTableAssociate3": {
       "Type": "AWS::EC2::SubnetRouteTableAssociation",
       "Condition": "AvailabilityZoneC",
       "Properties": {
@@ -298,7 +298,7 @@
         "RouteTableId": { "Ref": "PublicRouteTable" }
       }
     },
-		"PrivateRouteTable": {
+    "PrivateRouteTable": {
       "Type" : "AWS::EC2::RouteTable",
       "Properties": {
         "VpcId": {"Ref" : "VPC"},
@@ -309,15 +309,15 @@
       }
     },
     "PrivateRoutes": {
-    	"Type": "AWS::EC2::Route",
-    	"DependsOn": "NATIPAddress",
+      "Type": "AWS::EC2::Route",
+      "DependsOn": "NATIPAddress",
       "Properties": {
         "RouteTableId": { "Ref": "PrivateRouteTable" },
         "DestinationCidrBlock": "0.0.0.0/0",
         "InstanceId": { "Ref": "NATInstance" }
       }
     },
-		"PrivateRouteTableAssociate1": {
+    "PrivateRouteTableAssociate1": {
       "Type": "AWS::EC2::SubnetRouteTableAssociation",
       "Condition": "AvailabilityZoneA",
       "Properties": {
@@ -372,7 +372,7 @@
         "NetworkAclId": { "Ref": "NetworkAcl" }
       }
     },
-		"NetworkAclPublicAssociate1": {
+    "NetworkAclPublicAssociate1": {
       "Type": "AWS::EC2::SubnetNetworkAclAssociation",
       "Condition": "AvailabilityZoneA",
       "Properties": {
@@ -510,7 +510,7 @@
       "DependsOn": "NATIPAddress",
       "Properties": {
         "Tags": [ { "Key": "Name", "Value": { "Fn::Join": [ ".", [ { "Fn::Join": [ "-", [ { "Ref": "EnvType" }, "nat" ] ] }, { "Ref": "Subdomain" },  { "Ref": "DomainName" } ] ] } } ],
-      	"SourceDestCheck": "false",
+        "SourceDestCheck": "false",
         "ImageId": { "Fn::FindInMap" : [ "NATAMIId", { "Ref" : "AWS::Region" }, "AMI" ] },
         "SecurityGroupIds": [ { "Ref": "NATSecurityGroup" } ],
         "SubnetId": { "Ref": "PublicSubnetAz1" },
