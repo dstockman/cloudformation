@@ -12,7 +12,7 @@
 
    },
   "Resources" : {
-    "HostedZone": {
+    "HostedZoneName": {
       "Type": "AWS::Route53::HostedZone",
       "Properties": {
         "Name": { "Ref": "HostedZone" }
