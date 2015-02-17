@@ -1,0 +1,19 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "",
+  "Parameters": {
+  	"BucketName":{
+    	"Type": "String",
+			"Description": "Name of the bucket. Example is org-env-function.",
+			"MinLength": "5"
+  	}
+  },
+  "Resources": {
+  	"S3Bucket": {
+	  	"Type" : "AWS::S3::Bucket",
+	  	"Properties": {
+	  		"BucketName": { "Ref": "BucketName" }
+  		}
+  	}
+  }
+}
